@@ -1,0 +1,28 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+<% SALT="NaCl" unless defined?(SALT)%>
+one:
+  id: 1
+  name: dave
+  hashed_password: <%=User.encrypt_password('secret',SALT)%>
+  'no': MyString
+  age: 1
+  sex: Female
+  college: MyString
+  major: MyString
+  school_year: MyString
+  description: MyText
+  salt: <%=SALT%>
+
+two:
+  id: 2
+  name: Jone
+  hashed_password: <%=User.encrypt_password('secret',SALT)%>
+  'no': MyString
+  age: 1
+  sex: Female
+  college: MyString
+  major: MyString
+  school_year: MyString
+  description: MyText
+  salt: <%=SALT%>

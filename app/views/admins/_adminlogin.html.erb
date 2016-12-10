@@ -1,0 +1,39 @@
+
+
+
+<%= form_tag action="/adminlogin", :class => "form-horizontal user" do%>
+
+  <div class="form-group">
+    <label class="control-label col-lg-2" for="name" >Name</label>
+    <div class="col-lg-10">
+      <%= text_field_tag :name,params[:name], :class => 'form-control' %>
+    </div>
+
+  </div>
+  <div class="form-group">
+    <label for="password" class="control-label col-lg-2">Password</label>
+    <div class="col-lg-10">
+      <%= password_field_tag :password,params[:name], :class => 'form-control' %>
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <div class="already">
+            <p>Already have an account?</p>
+            <%= link_to "Sign in",login_path %>
+        </div>
+      
+    </div>
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= submit_tag "login", :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                activities_path, :class => 'btn btn-default' %>
+      
+    </div>
+  </div>
+  
+<% end %>
+
+

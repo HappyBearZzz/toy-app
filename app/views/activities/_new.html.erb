@@ -1,0 +1,75 @@
+<%= form_for @activity, :html => { :class => "form-horizontal activity" } do |f| %>
+
+  <% if @activity.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@activity.errors.count, "error") %> prohibited this activity from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @activity.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :title, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:title) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :content, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :content, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:content) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :start_at, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.datetime_select :start_at,{}, :class => 'form-control',:style=>'width:18%;display:inline-block;' %>
+    </div>
+    <%=f.error_span(:start_at) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :end_at, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.datetime_select :end_at, {},:class => 'form-control',:style=>'width:18%;display:inline-block;' %>
+    </div>
+    <%=f.error_span(:end_at) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :location, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :location, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:location) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :category, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :category,Activity::CATEGORY_TYPES,{}, class: 'form-control'  %>
+    </div>
+    <%=f.error_span(:category) %>
+  </div>
+  <div class="form-group">
+    <div class="col-lg-10">
+      <%= f.hidden_field :user_id, :class => 'form-control',:value =>session[:user_id] %>
+    </div>
+    <%=f.error_span(:user_id) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                activities_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

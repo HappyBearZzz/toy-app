@@ -1,0 +1,44 @@
+<%- model_class = Activity -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:content) %></th>
+      <th><%= model_class.human_attribute_name(:start_at) %></th>
+      <th><%= model_class.human_attribute_name(:end_at) %></th>
+      <th><%= model_class.human_attribute_name(:location) %></th>
+      <th><%= model_class.human_attribute_name(:category) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:part_created_at) %></th>
+      <th><%= model_class.human_attribute_name(:user_id) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @participations.each do |participation| %>
+      <tr>
+        <td><%= link_to participation.activity.id, activity_path(participation.activity) %></td>
+        <td><%= participation.activity.title %></td>
+        <td><%= participation.activity.content %></td>
+        <td><%= participation.activity.start_at %></td>
+        <td><%= participation.activity.end_at %></td>
+        <td><%= participation.activity.location %></td>
+        <td><%= participation.activity.category %></td>
+        <td><%=l participation.activity.created_at %></td>
+        <td><%=l participation.created_at %></td>
+        <td><%= participation.activity.user_id %></td>
+        <td><%= participation.status %></td>
+        <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      activity_path(participation.activity), :class => 'btn btn-default btn-xs' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<p><%= will_paginate @orders %></p>
