@@ -20,11 +20,11 @@ class ActivitiesController < ApplicationController
   # GET /activities/1
   # GET /activities/1.json
   def show
-    activity_id = params[:id]
-    @activity = Activity.find_by_id(activity_id)
-    @user = User.find_by_id(@activity.user_id)
-    @participations = @activity.participations.where("'status' = 'approved'")
-    @flag = @activity.users.index(User.find_by_id(session[:user_id]))
+    # activity_id = params[:id]
+    # @activity = Activity.find_by_id(activity_id)
+    # @user = User.find_by_id(@activity.user_id)
+    # @participations = @activity.participations.where("'status' = 'approved'")
+    # @flag = @activity.users.index(User.find_by_id(session[:user_id]))
     
   end
 

@@ -76,7 +76,8 @@ class ParticipationsController < ApplicationController
     activity_id = params[:activity_id]
     logger.info "activity_id"+activity_id.to_s
     participation.activity_id = activity_id
-    participation.status = 'apply_for'
+    # participation.status = 'apply_for'
+    participation.status = 'APPLE_FOR'
     respond_to do |format|
       if participation.save
         format.html { redirect_to participations_path, notice: 'Participation was successfully created.' }
@@ -89,11 +90,13 @@ class ParticipationsController < ApplicationController
   end
   
   def approve_participation
-    update_participation('approved')
+    # update_participation('approved')
+    update_participation('APPROVED')
   end
   
   def refuse_participation
-    update_participation('refused')
+    #update_participation('refused')
+    update_participation('REFUSED')
   end
   
   def update_participation(type)
