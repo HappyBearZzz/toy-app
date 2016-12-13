@@ -38,7 +38,7 @@
               :class => 'btn btn-danger' %>
 <% end %>
 <h1>Joined number:<%=@participations.size %></h1>
-<% if (session[:admin_id] || (session[:user_id] && session[:user_id] == @activity.user_id))&& @activity.participations.size > 0%>
+<% if (session[:admin_id] || (session[:user_id] && session[:user_id] == @activity.user_id))&& (@activity.participations.size > 0)%>
 <table class="table table-striped">
   <thead>
     <tr>

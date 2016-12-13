@@ -23,7 +23,7 @@ class ActivitiesController < ApplicationController
     activity_id = params[:id]
     @activity = Activity.find_by_id(activity_id)
     @user = User.find_by_id(@activity.user_id)
-    @participations = @activity.participations.where('status = "APPROVED"')
+    @participations = @activity.participations.where('"status" = "APPROVED"')
     @flag = @activity.users.index(User.find_by_id(session[:user_id]))
     
   end
