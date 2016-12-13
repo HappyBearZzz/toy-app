@@ -17,9 +17,9 @@
   <dt><strong><%= model_class.human_attribute_name(:category) %>:</strong></dt>
   <dd><%= @activity.category %></dd>
   <dt><strong><%= model_class.human_attribute_name(:publisher) %>:</strong></dt>
-  <dd><%= User.find_by_id(@activity.user_id).name %></dd>
+  <dd><%= @user.name %></dd>
 </dl>
-<% if session[:user_id] && !(session[:user_id] == @activity.user_id) &&!(@activity.users.index(User.find_by_id(session[:user_id])))%>
+<% if session[:user_id] && !(session[:user_id] == @activity.user_id) &&!(@flag)%>
 <%= link_to "add me to this activity",
               '/addtoactivity/'+@activity.id.to_s, :class => 'btn btn-default'  %>
 <% end %>
@@ -37,7 +37,7 @@
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
 <% end %>
-<h1>Joined number:<%=@activity.participations.where('status = "APPROVED"').size %></h1>
+<h1>Joined number:<%=@participations.size %></h1>
 <% if (session[:admin_id] || (session[:user_id] && session[:user_id] == @activity.user_id))&& @activity.participations.size > 0%>
 <table class="table table-striped">
   <thead>
@@ -78,7 +78,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @activity.participations.where('status = "APPROVED"').each do |participation| %>
+    <% @participations.each do |participation| %>
       <tr>
         <td><%= link_to participation.user.id, user_path(participation.user) %></td>
         <td><%= participation.user.name %></td>
