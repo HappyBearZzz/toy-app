@@ -23,12 +23,17 @@ test:
 production:
   <<: *default
   #database: db/production.sqlite3
-  adapter: postgresql
-  # encoding: unicode
-  database: d4qdfgqe2ru948
-  pool: 5
-  username: bosiycjhgohnug
-  password: 1f99fc1f1962b420ea51a331c62491965f47351ef04a90a591d72e449b3f91fa
+  # adapter: postgresql
+  # # encoding: unicode
+  # database: d4qdfgqe2ru948
+  # pool: 5
+  # username: bosiycjhgohnug
+  # password: 1f99fc1f1962b420ea51a331c62491965f47351ef04a90a591d72e449b3f91fa
+  # adapter: postgresql
+  # host: localhost
+  # username: bosiycjhgohnug
+  # password: 1f99fc1f1962b420ea51a331c62491965f47351ef04a90a591d72e449b3f91fa
+  # database: d4qdfgqe2ru948
 #   adapter: "postgresql"
  
 # database: "msf3dev"
