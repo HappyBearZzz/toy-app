@@ -23,9 +23,9 @@ test:
 
 production:
   <<: *default
-  adapter: mysql2
-  encoding: utf8
-  pool: 5
+  # adapter: mysql2
+  # encoding: utf8
+  # pool: 5
   # username: root
   # password: "123456"
   # host: localhost
