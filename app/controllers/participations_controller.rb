@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ParticipationsController < ApplicationController
   skip_before_filter :authorize
   before_action :set_participation, only: [:show, :edit, :update, :destroy]

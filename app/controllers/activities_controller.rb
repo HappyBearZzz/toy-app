@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ActivitiesController < ApplicationController
   # skip_before_filter :authorize,:except => :new
   skip_before_filter :authorize,:except => :new

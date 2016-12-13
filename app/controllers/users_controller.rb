@@ -1,3 +1,4 @@
+# encoding: utf-8
 class UsersController < ApplicationController
   skip_before_filter :authorize,:except => :change_password
   before_filter :authorize_admin, :only => :index

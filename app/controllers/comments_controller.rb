@@ -1,3 +1,4 @@
+# encoding: utf-8
 class CommentsController < ApplicationController
   skip_before_filter :authorize
   before_action :set_comment, only: [:show, :edit, :update, :destroy]

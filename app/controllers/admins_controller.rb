@@ -1,3 +1,4 @@
+# encoding: utf-8
 class AdminsController < ApplicationController
   skip_before_filter :authorize
   before_filter :authorize_admin,:except => [:adminlogin,:adminlogin_confirm]

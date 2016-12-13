@@ -1,3 +1,4 @@
+# encoding: utf-8
 class RepliesController < ApplicationController
   skip_before_filter :authorize
   before_action :set_reply, only: [:show, :edit, :update, :destroy]
