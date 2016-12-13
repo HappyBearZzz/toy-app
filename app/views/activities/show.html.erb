@@ -66,7 +66,7 @@
     <% end %>
       </tbody>
 </table>
-    <% elsif @activity.participations.where('status = "APPROVED"').size > 0%>
+    <% elsif @activity.participations.where("'status' = 'approved'").size > 0%>
     <table class="table table-striped">
     <thead>
     <tr>
