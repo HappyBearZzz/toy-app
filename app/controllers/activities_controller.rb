@@ -19,6 +19,9 @@ class ActivitiesController < ApplicationController
   # GET /activities/1
   # GET /activities/1.json
   def show
+    
+    @comments = Comment.where('activity_id = '+params[:id])
+    
   end
 
   # GET /activities/new
