@@ -109,7 +109,7 @@
     
 <% end %>
 
-<h1>Joined number:<%=@activity.participations.where('status = "APPROVED"').size %></h1>
+<h1>Joined number:<%=@activity.participations.where("'status' = 'APPROVED'").size %></h1>
 <% if (session[:admin_id] || (session[:user_id] && session[:user_id] == @activity.user_id))&& @activity.participations.size > 0%>
 <table class="table table-striped">
   <thead>
@@ -138,7 +138,7 @@
     <% end %>
       </tbody>
 </table>
-    <% elsif @activity.participations.where('status = "APPROVED"').size > 0%>
+    <% elsif @activity.participations.where("'status' = 'APPROVED'").size > 0%>
     <table class="table table-striped">
     <thead>
     <tr>
@@ -150,7 +150,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @activity.participations.where('status = "APPROVED"').each do |participation| %>
+    <% @activity.participations.where("'status' = 'APPROVED'").each do |participation| %>
       <tr>
         <td><%= link_to participation.user.id, user_path(participation.user) %></td>
         <td><%= participation.user.name %></td>
