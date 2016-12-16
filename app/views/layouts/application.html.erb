@@ -82,7 +82,7 @@
             <ul class="nav nav-list">
             <li><%= link_to "Joined Acitivities", user_participations_path(session[:user_id])  %></li>
               <li><%= link_to "Published Activities", user_activities_path(session[:user_id])  %></li>
-              <li><%= link_to "Personal Info", edit_user_path(session[:user_id])  %></li>
+              <li><%= link_to "Personal Info", user_path(session[:user_id])  %></li>
               <li><%= link_to "Change Password", change_password_path  %></li>
               <li><%= link_to "Personal Comments", user_comments_path(session[:user_id])  %></li>
               <li><%= link_to "Publish Activity", new_activity_path  %></li>

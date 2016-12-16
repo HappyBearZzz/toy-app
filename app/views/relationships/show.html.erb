@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>From userid:</strong>
+  <%= @relationship.from_userid %>
+</p>
+
+<p>
+  <strong>To userid:</strong>
+  <%= @relationship.to_userid %>
+</p>
+
+<%= link_to 'Edit', edit_relationship_path(@relationship) %> |
+<%= link_to 'Back', relationships_path %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :relationships
   get 'about' => 'about#index'
 
   # resources :tests

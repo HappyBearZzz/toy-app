@@ -2,6 +2,7 @@ require 'digest/sha2'
 
 class User < ActiveRecord::Base
     has_many:participations
+    has_many:relationships
     has_many:comments
     has_many:join_activities,:through=>:participations
     has_many:activities

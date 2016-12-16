@@ -21,6 +21,37 @@
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @user.description %></dd>
 </dl>
+<% if session[:user_id] == @user.id%>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_user_path(@user), :class => 'btn btn-default' %>
+<% else %>
+    <% @relationship=Relationship.where(from_userid:session[:user_id],to_userid:@user.id) %>
+    <% if @relationship.size == 0 %>
+        <%= form_for :relationship, url: relationships_url  do |f| %>
+        
+            <div class="form-group">
+              <%= f.hidden_field :from_userid, :value => session[:user_id] ,:class => 'form-control'%>
+            </div>
+        
+            <div class="form-group">
+              <%= f.hidden_field :to_userid, :value => @user.id ,:class => 'form-control'%>
+            </div>
+        
+            <div class="actions">
+              <%= f.submit "follow", :class => 'btn btn-primary'%>
+            </div>
+            
+        <% end %>
+    <% else %>
+    
+        <%= link_to 'unfollow',relationships_url+'/'+@relationship.first.id.to_s,
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+              
+    <% end %>
+    
+<% end %>
 <% if session[:admin_id]%>
 <%= link_to t('.back', :default => t("helpers.links.back")),
               users_path, :class => 'btn btn-default'  %>
