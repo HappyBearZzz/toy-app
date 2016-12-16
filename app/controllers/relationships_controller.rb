@@ -4,7 +4,13 @@ class RelationshipsController < ApplicationController
   # GET /relationships
   # GET /relationships.json
   def index
-    @relationships = Relationship.all
+    if params[:user_id]
+      @follows = Relationship.where(from_userid:params[:user_id])
+      @followers = Relationship.where(to_userid:params[:user_id])               
+    else
+      @follows = Relationship.all
+      @followers = Relationship.all
+    end
   end
 
   # GET /relationships/1

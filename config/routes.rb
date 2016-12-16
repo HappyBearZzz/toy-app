@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :relationships
+
   get 'about' => 'about#index'
 
   # resources :tests
@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'home' => 'activities#index'
   resources :admins
   resources :replies
+  resources :relationships
   resources :comments do
     resources :replies
   end
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
     resources :participations
     resources :activities
     resources :comments
+    resources :relationships
   end
 
   controller :users do
