@@ -39,9 +39,11 @@ class RepliesController < ApplicationController
       if @reply.save
         format.html { redirect_to @reply, notice: 'Reply was successfully created.' }
         format.json { render :show, status: :created, location: @reply }
+        format.js { redirect_to @reply.comment.activity }
       else
         format.html { render :new }
         format.json { render json: @reply.errors, status: :unprocessable_entity }
+        format.js { render json: @reply.errors, status: :unprocessable_entity }
       end
     end
   end
