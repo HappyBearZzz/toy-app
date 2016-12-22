@@ -8,7 +8,8 @@ class RelationshipsControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:relationships)
+    assert_not_nil assigns(:follows)
+    assert_not_nil assigns(:followers)
   end
 
   test "should get new" do
@@ -21,7 +22,7 @@ class RelationshipsControllerTest < ActionController::TestCase
       post :create, relationship: { from_userid: @relationship.from_userid, to_userid: @relationship.to_userid }
     end
 
-    assert_redirected_to relationship_path(assigns(:relationship))
+    assert_redirected_to user_path(users(:one))
   end
 
   test "should show relationship" do
@@ -44,6 +45,6 @@ class RelationshipsControllerTest < ActionController::TestCase
       delete :destroy, id: @relationship
     end
 
-    assert_redirected_to relationships_path
+    assert_redirected_to user_path(users(:one))
   end
 end

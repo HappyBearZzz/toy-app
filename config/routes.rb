@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   get 'about' => 'about#index'
 
-  # resources :tests
   root 'users#login'
   get 'home' => 'activities#index'
   resources :admins
