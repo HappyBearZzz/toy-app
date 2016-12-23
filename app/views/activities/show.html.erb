@@ -24,7 +24,8 @@
 <%= link_to "add me to this activity",
               '/addtoactivity/'+@activity.id.to_s, :class => 'btn btn-default'  %>
 <% end %>
-
+<%= link_to "enter chat room",
+              '/enter_chat/'+@activity.id.to_s, :class => 'btn btn-default'  %>
 
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

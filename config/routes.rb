@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
   get 'about' => 'about#index'
-
+  get "chat_group/:activity_id", to: "messages#chat_group"
+  get "chat_onetoone/:to_userid", to: "messages#chat_onetoone"
   root 'users#login'
   get 'home' => 'activities#index'
   resources :admins
+  resources :messages
   resources :replies
   resources :relationships
   resources :comments do
@@ -18,7 +20,11 @@ Rails.application.routes.draw do
     resources :comments
     resources :relationships
   end
-
+  
+  controller :messages do
+    get 'enter_chat/:activity_id'=>:enter_chat
+    get 'two_chat/:to_userid'=>:two_chat
+  end
   controller :users do
     get 'register'=>:new
     post 'register'=>:create

@@ -24,6 +24,9 @@
         <td>
           <%= link_to t('.more_details', :default => t("helpers.links.more_details")),
                       user_path(follow.to_userid), :class => 'btn btn-default btn-xs' %>
+          <%= link_to 'chat',
+                      '/two_chat/'+follow.to_userid.to_s, :class => 'btn btn-default btn-xs' %>          
+
         </td>
       </tr>
     <% end %>
@@ -51,6 +54,8 @@
         <td>
           <%= link_to t('.more_details', :default => t("helpers.links.more_details")),
                       user_path(follower.from_userid), :class => 'btn btn-default btn-xs' %>
+          <%= link_to 'chat',
+                      '/two_chat/'+follower.from_userid.to_s, :class => 'btn btn-default btn-xs' %> 
         </td>
       </tr>
     <% end %>
