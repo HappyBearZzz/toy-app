@@ -7,11 +7,11 @@ $ ->
   words = url.split('/')
   if words[words.length-2] == "enter_chat"
     activity_id = words[words.length-1]
-    socket = new WebSocket ("ws://#{window.location.host}/chat_group/" + activity_id)
+    socket = new WebSocket ("wss://#{window.location.host}/chat_group/" + activity_id)
     flag = true
   else if words[words.length-2] == "two_chat"
     user_id = words[words.length-1]
-    socket = new WebSocket ("ws://#{window.location.host}/chat_onetoone/" + user_id)
+    socket = new WebSocket ("wss://#{window.location.host}/chat_onetoone/" + user_id)
     flag = false
 
   socket.onmessage = (event) ->
