@@ -1,0 +1,1 @@
+json.array! @chatinfos, partial: 'chatinfos/chatinfo', as: :chatinfo

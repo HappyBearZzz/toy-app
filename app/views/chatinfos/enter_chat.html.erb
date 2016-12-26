@@ -1,6 +1,6 @@
-<h1>OneToOne Chat</h1>
+<h1>Group Chat</h1>
 <pre style="height:400px" id="output"></pre>
-<form class="twochat" id="twochat">
+<form class="chat" id="chat">
   <div class="form-group">
     <button id="submitbutton" class="btn btn-primary">我要发言</button>
     <div class="col-lg-10">
@@ -10,16 +10,16 @@
 </form>
 <button id="openbutton" class="btn btn-primary">开始聊天</button>
 <button id="closebutton" class="btn btn-primary">关闭聊天</button>
-<%= link_to 'peer history', '/peer_history/'+@to_userid.to_s, :class => 'btn btn-default' %>
+<%= link_to 'group history', '/group_history/'+@activity_id.to_s, :class => 'btn btn-default' %>
 <script type="text/javascript">
     $(document).ready(function(){
-    var activity_id,  socket_onetoone, url, user_id, words;
+   var activity_id, socket, url, user_id, words;
     url = window.location.href;
     words = url.split('/');
-    user_id = words[words.length - 1];
+    activity_id = words[words.length - 1];
     
-    $("body").on("submit", "form.twochat", function(event) {
-        if(socket_onetoone===undefined){
+    $("body").on("submit", "form.chat", function(event) {
+        if(socket===undefined){
             alert("链接还没有打开");
             return false;
         }else if($('#content').val().trim()==""){
@@ -29,30 +29,31 @@
             var $input;
             event.preventDefault();
             $input = $("#content");
-            if (socket_onetoone.readyState === socket_onetoone.OPEN) {
-                socket_onetoone.send($input.val());
+            if (socket.readyState === socket.OPEN) {
+                socket.send($input.val());
                 $input.val("");
             }else {
                 alert("链接已关闭");
             }
         }
     });
+    
     $('#closebutton').click(function(){
-        socket_onetoone.close();
+        socket.close();
     });
     $('#openbutton').click(function(){
-        if(socket_onetoone===undefined || socket_onetoone.readyState != socket_onetoone.OPEN){
-            socket_onetoone = new WebSocket(("wss://" + window.location.host + "/chat_onetoone/") + user_id);
-            socket_onetoone.onopen = function(event) {
-            $("#output").append("connected<br>");
+        if(socket===undefined || socket.readyState != socket.OPEN){
+            socket = new WebSocket(("wss://" + window.location.host + "/chat_group/") + activity_id);
+            socket.onopen = function(event) {
+                $("#output").append("connected<br>");
                 return false;
             };
-            socket_onetoone.onmessage = function(event) {
+            socket.onmessage = function(event) {
                 if (event.data.length) {
                     $("#output").append(event.data + "<br>");
                 }
             };
-            socket_onetoone.onclose = function(event) {
+            socket.onclose = function(event) {
                 $("#output").append("close<br>");
             };
         }else{

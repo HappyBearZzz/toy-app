@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
     has_many:comments
     has_many:join_activities,:through=>:participations
     has_many:activities
+    has_many:chatinfos
     SEX_TYPES =     ["Male","Female"]
     validates :sex,:inclusion=>SEX_TYPES
     validates :name,:presence=>true,:uniqueness=>true

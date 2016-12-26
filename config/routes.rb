@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :chatinfos
   get 'about' => 'about#index'
-  get "chat_group/:activity_id", to: "messages#chat_group"
+  get "chat_group/:activity_id", to: "chatinfos#chat_group"
   get "chat_onetoone/:to_userid", to: "messages#chat_onetoone"
   root 'users#login'
   get 'home' => 'activities#index'
@@ -22,8 +23,12 @@ Rails.application.routes.draw do
   end
   
   controller :messages do
-    get 'enter_chat/:activity_id'=>:enter_chat
     get 'two_chat/:to_userid'=>:two_chat
+    get 'peer_history/:to_userid'=>:peer_history
+  end
+  controller :chatinfos do
+    get 'enter_chat/:activity_id'=>:enter_chat
+    get 'group_history/:activity_id'=>:group_history
   end
   controller :users do
     get 'register'=>:new
