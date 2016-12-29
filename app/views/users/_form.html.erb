@@ -1,4 +1,4 @@
-<%= form_for @user, :html => { :class => "form-horizontal user" } do |f| %>
+<%= form_for @user, :html => { :multipart => true, :class => "form-horizontal user" } do |f| %>
 
   <% if @user.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
@@ -14,6 +14,13 @@
       </div>
     </div>
   <% end %>
+  
+  <%= image_tag(@user.avatar_url(:large)) if @user.avatar %>
+  
+  <div class="form-group">
+    <%= f.file_field :avatar %>
+    <%= f.hidden_field :avatar_cache %>
+  </div>
 
   <div class="form-group">
     <%= f.label :name, :class => 'control-label col-lg-2' %>
