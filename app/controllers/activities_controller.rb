@@ -14,6 +14,9 @@ class ActivitiesController < ApplicationController
       @activities = Activity.all.paginate(:page => params[:page], :per_page => 5).order('
                                                                created_at DESC')
     end
+    if params[:q]
+      @activities = Activity.where("title like ?", "%#{params[:q][:name_cont]}%")
+    end
   end
 
   # GET /activities/1

@@ -1,14 +1,16 @@
 # encoding: utf-8
 class UsersController < ApplicationController
   skip_before_filter :authorize,:except => :change_password
-  before_filter :authorize_admin, :only => :index
+  #before_filter :authorize_admin, :only => :index
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all.paginate(:page => params[:page], :per_page => 5).order('
-                                                               created_at DESC')
+    @users = User.all.paginate(:page => params[:page], :per_page => 5).order('created_at DESC')
+    if params[:q]
+      @users = User.where("name like ?", "%#{params[:q][:name_cont]}%")
+    end
   end
 
   # GET /users/1
@@ -39,7 +41,7 @@ class UsersController < ApplicationController
         format.json { render :show, status: :created, location: @user }
       else
         #format.html { render :new }
-	format.html { redirect_to register_url, notice: 'Validation fails.' }
+	      format.html { redirect_to register_url, notice: 'Validation fails.' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

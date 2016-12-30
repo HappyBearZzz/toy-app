@@ -40,38 +40,48 @@
 
 
 <body>
-<%= nav_bar brand: "workplace", brand_link: home_path do %>
-    <%= menu_group do %>
-        <%= menu_item "Home", home_path %>
-        <%= menu_divider %>
-        <%= drop_down "Acitivities" do %>
-            <%= menu_item "Latest Activities", activities_path %>
-            <%= menu_item "Hot Activities", activities_path %>
-            <%= menu_item "You May Care Activities", activities_path %>
-        <% end %>
-        <%= menu_item "All Acitivities", activities_path %>
-        <%= menu_item "All Participations", participations_path %>
-        <%= menu_item "All Comments", comments_path %>
-        <%= menu_item "All Replies", replies_path %>
-        <%= menu_item "All Relationships", relationships_path %>
-        <%= menu_item "All Messages", messages_path %>
-        <%= menu_item "About Us", about_path %>
-    <% end %>
-    <%= menu_group pull: :right do %>
-        <% if session[:user_id] %>
-            <%= menu_item User.find_by_id(session[:user_id]).name, edit_user_path(session[:user_id]) %>
-            <%= menu_item "Logout", logout_path, method: :delete %>
-        <% elsif Admin.find_by_id(session[:admin_id])%>
-  
-            <%= menu_item Admin.find_by_id(session[:admin_id]).name, edit_admin_path(session[:admin_id]) %>
-            <%= menu_item "Logout", adminlogout_path, method: :delete %>
-        <% else %>
-  
-            <%= menu_item "Login", login_path%>
-            <%= menu_item "Register", register_path %>
-        <% end %>
-    <% end %>
-<% end %>
+  <%= nav_bar brand: "workplace", brand_link: home_path do %>
+      <%= menu_group do %>
+          <%= menu_item "Home", home_path %>
+          <%= menu_divider %>
+          <%= drop_down "Acitivities" do %>
+              <%= menu_item "Latest Activities", activities_path %>
+              <%= menu_item "Hot Activities", activities_path %>
+              <%= menu_item "You May Care Activities", activities_path %>
+          <% end %>
+          <%= menu_item "All Acitivities", activities_path %>
+          <%= menu_item "All Participations", participations_path %>
+          <%= menu_item "All Comments", comments_path %>
+          <%= menu_item "All Replies", replies_path %>
+          <%= menu_item "All Relationships", relationships_path %>
+          <%= menu_item "All Messages", messages_path %>
+          <%= menu_item "About Us", about_path %>
+      <% end %>
+  		<%= form_tag activities_path, method: :get, class: "navbar-form navbar-left" do %>
+        <div class="form-group">
+          <%= text_field_tag "q[name_cont]", params["q"] && params["q"]["name_cont"], class: "form-control input-sm search-form", placeholder: "Search for Activity" %>
+        </div>
+      <% end %>
+      <%= form_tag users_path, method: :get, class: "navbar-form navbar-left" do %>
+        <div class="form-group">
+          <%= text_field_tag "q[name_cont]", params["q"] && params["q"]["name_cont"], class: "form-control input-sm search-form", placeholder: "Search for User" %>
+        </div>
+      <% end %>
+      <%= menu_group pull: :right do %>
+          <% if session[:user_id] %>
+              <%= menu_item User.find_by_id(session[:user_id]).name, edit_user_path(session[:user_id]) %>
+              <%= menu_item "Logout", logout_path, method: :delete %>
+          <% elsif Admin.find_by_id(session[:admin_id])%>
+    
+              <%= menu_item Admin.find_by_id(session[:admin_id]).name, edit_admin_path(session[:admin_id]) %>
+              <%= menu_item "Logout", adminlogout_path, method: :delete %>
+          <% else %>
+    
+              <%= menu_item "Login", login_path%>
+              <%= menu_item "Register", register_path %>
+          <% end %>
+      <% end %>
+  <% end %>
 
     <div class="container">
       <div class="row">
