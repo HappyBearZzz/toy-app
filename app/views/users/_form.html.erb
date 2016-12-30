@@ -15,13 +15,11 @@
     </div>
   <% end %>
   
-  <%= image_tag(@user.avatar_url(:large)) if @user.avatar %>
-  
   <div class="form-group">
     <%= f.file_field :avatar %>
     <%= f.hidden_field :avatar_cache %>
   </div>
-
+  
   <div class="form-group">
     <%= f.label :name, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">

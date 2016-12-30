@@ -1,6 +1,9 @@
 require 'digest/sha2'
+require 'carrierwave/orm/activerecord'
 
 class User < ActiveRecord::Base
+    
+    mount_uploader :avatar, AvatarUploader
     
     has_many:participations
     has_many:relationships
@@ -8,8 +11,6 @@ class User < ActiveRecord::Base
     has_many:join_activities,:through=>:participations
     has_many:activities
     has_many:chatinfos
-    
-    mount_uploader :avatar, AvatarUploader
     
     SEX_TYPES =     ["Male","Female"]
     validates :sex,:inclusion=>SEX_TYPES
