@@ -16,7 +16,14 @@
   <% end %>
   
   <div class="form-group">
-    <%= f.file_field :avatar %>
+      <div class="divClass">
+        <% if @user.avatar.to_s == "" %>
+        <%= image_tag("default.jpg",:id => 'img_preview', :class => "divClass") %>
+        <% else %>
+        <%= image_tag(@user.avatar_url,:id => 'img_preview', :class => "divClass") %>
+        <% end %>
+      </div>
+    <%= f.file_field :avatar, :id => 'user_avatar'%>
     <%= f.hidden_field :avatar_cache %>
   </div>
   
@@ -87,3 +94,36 @@
   </div>
 
 <% end %>
+
+<script type="text/javascript">
+  
+  $("#user_avatar").change(function(){
+	  var objUrl = getObjectURL(this.files[0]);
+	  console.log("objUrl = "+objUrl);
+	  if (objUrl) {
+		  $("#img_preview").attr("src", objUrl) ;
+	  }
+  });
+  
+  function getObjectURL(file) {
+	  var url = null ; 
+	if (window.createObjectURL!=undefined) { // basic
+		url = window.createObjectURL(file) ;
+	} else if (window.URL!=undefined) { // mozilla(firefox)
+		url = window.URL.createObjectURL(file) ;
+	} else if (window.webkitURL!=undefined) { // webkit or chrome
+		url = window.webkitURL.createObjectURL(file) ;
+	}
+	return url ;
+  }
+  
+</script>
+
+<style type="text/css">
+
+  .divClass{
+    width: 150px;
+    height: 150px;
+  }
+        
+</style>

@@ -15,9 +15,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  def default_url
-    "favicon.ico"
-  end
 
   # Process files as they are uploaded:
   # process scale: [200, 300]
@@ -31,22 +28,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   #   process resize_to_fit: [50, 50]
   # end
   
-  version :normal do
-    process :resize_to_limit => [1000, 1000]
-  end
-
-  version :small do
-    process :resize_to_fit => [16, 16]
-  end
-
-  version :large do
-    process :resize_to_fit => [64, 64]
-  end
-
-  version :big do
-    process :resize_to_fit => [120, 120]
-  end
-
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist

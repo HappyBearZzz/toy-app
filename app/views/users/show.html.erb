@@ -3,6 +3,14 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
+<div class="divClass">
+    <% if @user.avatar.to_s == "" %>
+        <%= image_tag("default.jpg", :class => "divClass") %>
+    <% else %>
+        <%= image_tag(@user.avatar_url, :class => "divClass") %>
+    <% end %>
+</div>
+
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @user.name %></dd>
@@ -63,3 +71,12 @@
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
 <% end %>
+
+<style type="text/css">
+
+  .divClass{
+    width: 150px;
+    height: 150px;
+  }
+        
+</style>
